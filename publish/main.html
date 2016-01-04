@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>메인</title>
+	<link href="css/global-style.css" rel="stylesheet">
+	<link href="css/ionicons.min.css" rel="stylesheet">
+	<link href="css/swiper.min.css" rel="stylesheet">
+	<style type="text/css">
+		body{
+			background-color: #efefef;
+			background: linear-gradient(90deg, rgba(236, 236, 227, 0.6), rgba(207, 210, 212, 0.6));
+		}
+		.swiper-container {
+			width: 100%;
+			height: 100%;
+		}
+		.toolbar{
+			position: absolute;
+			top: 0;
+			right: 0;
+			padding: 20px 25px 0 0;
+			z-index: 9999;
+		}
+		.toolbar > .logo{
+			position: absolute;
+			width: 36px;
+			height: 36px;
+			webkit-border-radius: 50%;
+			border-radius: 50%;
+			right: 25px;
+			top: 12px;
+		}
+		.brand_name{
+			margin-right: 50px;
+			font-size: 16px;
+			color: rgba(255,255,255,0.85);
+			color: #5E7782;
+			cursor: pointer;
+			position: relative;
+			padding-right: 16px;
+			display: inline-block;
+			margin-bottom: 8px;
+		}
+		.brand_name:before{
+			position: absolute;
+			color: #5E7782;
+			right: 0;
+			top: 9px;
+			content: " ";
+			width: 0;
+			height: 0;
+			border-left: 4px solid transparent;
+			border-right: 4px solid transparent;
+			border-top: 5px solid #5E7782;
+		}
+		
+		.page{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			display: table;
+		}
+		.page > .content_wrap{
+			display: table-cell;
+			vertical-align: middle;
+			text-align: center;
+		}
+		.page > .content_wrap > .content_inner{
+			position: relative;
+		}
+		.page > .content_wrap > .content_inner > .content{
+			max-width: 1080px;
+			position: relative;
+			width: 100%;
+			/* max-height: 0;  */
+			margin: 0 auto;
+			background-color: #fff;
+			-webkit-border-radius: 22px;
+			border-radius: 22px;
+			padding: 25px;
+			text-align: left;
+			overflow-x: hidden;
+			/* overflow-y: hidden; */
+			opacity: 0;
+			display: none;
+			-webkit-transition: all .4s ease-in;
+			-moz-transition: all .4s ease-in;
+			-o-transition: all .4s ease-in;
+			transition: all .4s ease-in;
+			-webkit-transform: scale(0.9);
+			-moz-transform: scale(0.9);
+			-o-transform: scale(0.9);
+			transform: scale(0.9);
+		}
+		.page > .content_wrap > .content_inner > .content.show{
+			opacity: 1;
+			-webkit-transform: scale(1);
+			-moz-transform: scale(1);
+			-o-transform: scale(1);
+			transform: scale(1);
+			/* max-height: 800px; */
+			z-index: 9998;
+		}
+		.page > .content_wrap > .content_inner > .menu_wrap{
+			-webkit-transition: all .4s ease-in-out;
+			-moz-transition: all .4s ease-in-out;
+			-o-transition: all .4s ease-in-out;
+			transition: all .4s ease-in-out;
+		}
+		.page > .content_wrap > .content_inner > .menu_wrap.hide{
+			opacity: 0.25;
+			pointer-events: none;
+		}
+		
+		.content > .title{
+			color: #636767;
+			font-weight: 300;
+			margin-top: 0;
+			font-size: 30px;
+		}
+		.content > .close{
+			position: absolute;
+			top: 5px;
+			right: 12px;
+			-webkit-appearance: none;
+			padding: 0;
+			cursor: pointer;
+			background: 0 0;
+			border: 0;
+			float: right;
+			font-size: 36px;
+			font-weight: 700;
+			line-height: 1;
+			color: #000;
+			text-shadow: 0 1px 0 #fff;
+			filter: alpha(opacity=20);
+			opacity: .2;
+			outline: none;
+			font-family: "맑은고딕";
+		}
+		.content > .close:hover{
+			filter: alpha(opacity=50);
+			opacity: .5;
+		}
+		.menu_list{
+			list-style: none;
+			padding-left: 0;
+			display: inline-block;
+		}
+		.menu_list:after{
+			content: " ";
+			display: table;
+			clear: both;
+		}
+		.menu_list > li{
+			float: left;
+			margin: 0 65px;
+			/* background-color: #fff;
+			webkit-border-radius: 6px;
+			border-radius: 6px;
+			-moz-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.18);
+			-webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.18);
+			box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.18); */
+			color: rgba(99, 110, 131, 0.65);
+			cursor: pointer;
+			-webkit-transition: all .2s ease-in-out;
+			-moz-transition: all .2s ease-in-out;
+			-o-transition: all .2s ease-in-out;
+			transition: all .2s ease-in-out;
+		}
+		.menu_list > li:hover{
+			color: rgba(99, 110, 131, 0.85);
+			-webkit-transform: scale(1.2);
+			-moz-transform: scale(1.2);
+			-o-transform: scale(1.2);
+			transform: scale(1.2);
+		}
+		.menu_list > li a{
+			color: rgba(99, 110, 131, 0.65);
+		}
+		.menu_list > li .icon{
+			display: block;
+		}
+		.menu_list > li .icon:before{
+			font-size: 120px;
+		}
+		.menu_list > li span{
+			font-size: 18px;
+			font-weight: 400;
+		}
+		
+		@media all and (max-width:768px) {
+			
+		}
+		
+		.tabbar{
+			width: 100%;
+			padding-top: 15px;
+			padding-bottom: 40px;
+		}
+		.tabbar > ul{
+			margin: 0;
+			padding-left: 0;
+			list-style: none;
+			position: relative;
+		}
+		.tabbar > ul > li{
+			display: inline-block;
+			margin-right: 20px;
+			margin-bottom: 10px;
+			cursor: pointer;
+			font-weight: 400;
+		}
+		.tabbar > ul > li.active{
+			color: #78B325;
+		}
+		.tabbar > .highlight{
+			position: relative;
+			height: 2px;
+			display: block;
+			background-color: #EAEAEA;
+		}
+		.tabbar > .highlight > span{
+			position: absolute;
+			left: 0;
+			top: 0;
+			height: 2px;
+			background-color: #78B325;
+			-webkit-transition: all .2s ease-in-out;
+			-moz-transition: all .2s ease-in-out;
+			-o-transition: all .2s ease-in-out;
+			transition: all .2s ease-in-out;
+		}
+		
+		.member_list{
+			padding-left: 0;
+			list-style: none;
+			border-top: 1px solid #E4E8EB;
+		}
+		.member_list > li{
+			position: relative;
+			background-color: #fff;
+			padding: 8px 0 8px 50px;
+			border-bottom: 1px solid #E4E8EB;
+			font-size: 15px;
+			cursor: pointer;
+		}
+		.member_list > li:nth-child(2n){
+			background-color: #FAFCFB;
+		}
+		.member_list > li:hover{
+			background-color: #F3F5F4;
+		}
+		.member_list > li > img{
+			position: absolute;
+			top: 9px;
+			left: 0;
+			width: 35px;
+			height: 35px;
+			-webkit-border-radius: 50%;
+			border-radius: 50%;
+		}
+		.member_list > li > span{
+			color: #656565;
+		}
+		.member_list > li > span.cnt{
+			float: right;
+			margin-top: -12px;
+		}
+		
+		
+		.save_wrap{
+			width: 100%;
+			position: relative;
+			top: 0;
+			left: 0;
+			background-color: #fff;
+			-webkit-transition: all .4s ease-in-out;
+			-moz-transition: all .4s ease-in-out;
+			-o-transition: all .4s ease-in-out;
+			transition: all .4s ease-in-out;
+		}
+		.save_wrap.on{
+			display: none;
+			opacity: 0;
+		}
+		.saving_draw{
+			width: 100%;
+			position: relative;
+			padding: 15px;
+			background-color: #434542;
+			-webkit-border-radius: 8px;
+			border-radius: 8px;
+		}
+		.saving_draw:after{
+			content: " ";
+			display: table;
+			clear: both;
+		}
+		.saving_brand_name{
+			color: rgba(255, 255, 255, 0.8)!important;
+			position: absolute;
+			top: 15px;
+			left: 15px;
+			font-size: 16px!important;
+			margin: 0!important;
+			z-index: 2;
+		}
+		.saving_draw.type1{
+			padding-top: 50px;
+			padding-bottom: 25px;
+			-webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+			box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+		}
+		.saving_draw.type1 > .coupon{
+			width: 18%;
+			padding-bottom: 18%;
+			margin-right: 2.5%;
+			margin-bottom: 2.5%;
+			float: left;
+			position: relative;
+			cursor: pointer;
+		}
+		.saving_draw.type1 > .coupon:nth-child(5n){
+			margin-right: 0%;
+		}
+		.saving_draw.type1 > .coupon.active:after{
+			position: absolute;
+			left: 20%;
+			top: 20%;
+			/*margin-top: -20%;
+			margin-left: -20%;*/
+			width: 60%;
+			padding-bottom: 60%;
+			content: " ";
+			background-image: url("https://igcdn-photos-d-a.akamaihd.net/hphotos-ak-xtp1/t51.2885-19/11018428_1561110444162331_977141427_a.jpg");
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: 50% 50%;
+			border-radius: 50%;
+		}
+		.saving_draw.type1 > .coupon > div{
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			border: 2px dashed rgba(255, 255, 255, 0.8);
+			-webkit-border-radius: 50%;
+			border-radius: 50%;
+			-webkit-transition: all .5s ease-in-out;
+			-moz-transition: all .5s ease-in-out;
+			-o-transition: all .5s ease-in-out;
+			transition: all .5s ease-in-out;
+		}
+		.saving_draw.type1 > .coupon.point > div{
+			border-color: #DFD410;
+		}
+		.saving_draw.type1 > .coupon > div > div{
+			display: table;
+			width: 100%;
+			height: 100%;
+		}
+		.saving_draw.type1 > .coupon > div > div > span{
+			display: table-cell;
+			text-align: center;
+			vertical-align: middle;
+			font-size: 15px;
+			color: #fff;
+			-webkit-transition: all .5s ease-in-out;
+			-moz-transition: all .5s ease-in-out;
+			-o-transition: all .5s ease-in-out;
+			transition: all .5s ease-in-out;
+		}
+		.saving_draw.type1 > .coupon.point > div > div > span{
+			color: #DFD410;
+		}
+		.gift{
+			width: 220px;
+			margin: 0;
+			float: none;
+			position: absolute;
+			background-color: #fff;
+			padding: 15px;
+			-webkit-border-radius: 6px;
+			border-radius: 6px;
+			z-index: 9999;
+			box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.15);
+			-webkit-box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.15);
+			-webkit-transition: opacity .4s ease-in-out;
+			-moz-transition: opacity .4s ease-in-out;
+			-o-transition: opacity .4s ease-in-out;
+			transition: opacity .4s ease-in-out;
+		}
+		.gift.on{
+			opacity: 0;
+			pointer-events: none;
+		}
+		.gift:after{
+			position: absolute;
+			top: 24px;
+			left: -12px;
+			display: inline-block;
+			border-top: 7px solid transparent;
+			border-right: 12px solid #ffffff;
+			border-bottom: 7px solid transparent;
+			content: '';
+		}
+		.gift:before{
+			position: absolute;
+			top: 23px;
+			left: -13px;
+			display: inline-block;
+			border-top: 8px solid transparent;
+			border-right: 13px solid #d8d8d8;
+			border-bottom: 8px solid transparent;
+			content: '';
+		}
+		.gift > div{
+			position: relative;
+			-webkit-border-radius: 6px;
+			border-radius: 6px;
+			border: 2px solid #D9D9D9;
+			overflow: hidden;
+		}
+		.gift > div > input{
+			background-color: #fff;
+			border: 0;
+			padding: 6px 8px;
+			width: 100%;
+			padding-right: 50px;
+		}
+		.gift > div > button{
+			position: absolute;
+			top: 0;
+			right: 0;
+			padding: 6px 12px;
+			background-color: #EAEAEA;
+			border-right: 0;
+			border-top: 0;
+			border-bottom: 0;
+			border-left: 2px solid #D9D9D9;
+			/* -webkit-border-top-right-radius: 6px;
+			-webkit-border-bottom-right-radius: 6px;
+			border-top-right-radius: 6px;
+			border-bottom-right-radius: 6px; */
+			color: #ADADAD;
+		}
+		.gift > div > button > i:before{
+			font-size: 20px;
+		}
+		
+		.tab_container{
+			margin: 0 auto;
+			position: relative;
+			overflow: hidden;
+			z-index: 1;
+		}
+		.tab_container > .tab_wrap{
+			position: relative;
+			width: 100%;
+			height: 100%;
+			z-index: 1;
+			/* display: -webkit-box;
+			display: -moz-box;
+			display: -ms-flexbox;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-transition: all .4s ease-in-out;
+			-moz-transition: all .4s ease-in-out;
+			-o-transition: all .4s ease-in-out;
+			transition: all .4s ease-in-out;
+			-webkit-box-sizing: content-box;
+			-moz-box-sizing: content-box;
+			box-sizing: content-box;
+			-webkit-transform: translate3d(0,0,0);
+			-moz-transform: translate3d(0,0,0);
+			-o-transform: translate(0,0);
+			-ms-transform: translate3d(0,0,0);
+			transform: translate3d(0,0,0); */
+		}
+		.tab_container > .tab_wrap > .tab{
+			/* -webkit-flex-shrink: 0;
+			-ms-flex: 0 0 auto;
+			flex-shrink: 0;
+			margin-right: 25px; */
+			width: 100%;
+			height: 100%;
+			position: relative;
+			display: none;
+		}
+		.tab_container > .tab_wrap > .tab.active{
+			display: block;
+		}
+		
+		.brandlogo_config{
+			text-align: center;
+			padding: 25px 0;
+		}
+		.brandlogo_config > img{
+			width: 125px;
+			height: 125px;
+			-webkit-border-radius: 50%;
+			border-radius: 50%;
+		}
+		
+		
+		.saving_create_slide{
+			text-align: center;
+		}
+		.saving_create_slide h1,h2{
+			color: #4A4E4E;
+			font-weight: 300;
+			font-size: 45px;
+			margin-bottom: 50px;
+		}
+		.saving_create_slide h2{
+			font-size: 32px;
+		}
+		.saving_create_slide p{
+			color: #333;
+			line-height: 160%;
+			font-size: 15px;
+			font-weight: 300;
+		}
+		
+		.saving_category{
+			margin: 0 auto;
+		}
+		.saving_category > .saving_type{
+			display: inline-block;
+			cursor: pointer;
+		}
+		.saving_category > .saving_type:first-child{
+			margin-right: 55px;
+		}
+		.saving_category > .saving_type:hover svg{
+			fill: #0079C0;
+		}
+		.saving_category > .saving_type:hover{
+			color: #0079C0;
+		}
+		.saving_category > .saving_type.active svg{
+			fill: #0079C0;
+		}
+		.saving_category > .saving_type.active{
+			color: #0079C0;
+		}
+		.saving_category > .saving_type > i:before{
+			font-size: 50px;
+		}
+		.saving_category > .saving_type > h3{
+			color: #333;
+			font-weight: 200;
+		}
+		.saving_category > .saving_type.active > h3{
+			color: #0079C0;
+		}
+		.saving_category > .saving_type > p{
+			color: #4A4E4E;
+			font-weight: 100;
+			font-size: 14px;
+		}
+		.gift-help{
+			position: relative;
+			cursor: help;
+		}
+		.gift-help:hover:after{
+			background: #333;
+			background: rgba(0,0,0,.8);
+			border-radius: 5px;
+			top: 30px;
+			color: #fff;
+			content: attr(data-message);
+			left: -90px;
+			padding: 5px 10px;
+			position: absolute;
+			z-index: 9999;
+			text-align: center;
+			min-width: 200px;
+			font-weight: 100!important;
+			font-size: 13px;
+		}
+		.gift-help:hover:before{
+			border: solid;
+			border-color: rgba(0,0,0,.8) transparent;
+			border-width: 0px 6px 10px 6px;
+			bottom: -8px;
+			content: "";
+			left: 0px;
+			position: absolute;
+			z-index: 99;
+		}
+		
+		.gift_list{
+			padding-left: 0;
+			list-style: none;
+		}
+		.gift_list > li{
+			padding: 8px 0;
+			border-bottom: 1px solid #e2e2e2;
+			position: relative;
+		}
+		.gift_list > li > strong{
+			margin-right: 10px;
+			color: #517FA9;
+		}
+		.gift_list > li > .delete-btn{
+			position: absolute;
+			right: 0;
+			color: #B1B1B1;
+			cursor: pointer;
+		}
+		.form_block.svc{
+			border-bottom: 2px solid #F2F3F3;
+			padding-bottom: 25px;
+		}
+		
+		@media all and (max-width:768px) {
+			.menu_list > li{
+				width: 50%;
+				margin: 25px 0;
+			}
+		}
+	</style>
+</head>
+<body>
+<div class="toolbar dropdown">
+	<span class="brand_name" data-toggle="dropdown">할리스커피</span>
+	<ul class="dropdown_list bottom">
+		<li><a href="#/config" ><i class="ion-ios-gear icon"></i>설정</a></li>
+		<li><a href="#"><i class="ion-log-out icon"></i>로그아웃</a></li>
+		<li><div class="arrow" style="right:25px;left:inherit;"></div></li>
+	</ul>
+	<img class="logo" src="https://igcdn-photos-d-a.akamaihd.net/hphotos-ak-xtp1/t51.2885-19/11018428_1561110444162331_977141427_a.jpg">
+</div>
+<div class="page">
+	<div class="content_wrap">
+		<div class="content_inner">
+			<div class="content" style="max-width:400px;" id="saving">
+				<button type="button" class="close" title="닫기">×</button>
+				<h1 class="title">적립</h1>
+				<div style="position:relative;top:0;left:0;" id="savingSearchForm">
+					<div style="padding:10px 58px 10px 0;position:relative;">
+						<input type="text" class="bs-form" placeholder="전화번호 뒷자리 또는 이름" style="margin-right:6px;width:100%;">
+						<button type="button" class="bs-btn blue" style="position:absolute;right:0;top:9px;"><i class="ion-ios-search-strong icon"></i></button>
+					</div>
+					<ul class="member_list" id="savingMemberList">
+						<li data-name="서영진" data-phone="2960"><img src="https://instagramimages-a.akamaihd.net/profiles/anonymousUser.jpg"><span><strong>서영진</strong><br>2960</span><span class="cnt">25회</span></li>
+						<li data-name="송민호" data-phone="4460"><img src="https://instagramimages-a.akamaihd.net/profiles/anonymousUser.jpg"><span><strong>송민호</strong><br>4460</span><span class="cnt">5회</span></li>
+						<li data-name="이은아" data-phone="4539"><img src="https://instagramimages-a.akamaihd.net/profiles/anonymousUser.jpg"><span><strong>이은아</strong><br>4539</span><span class="cnt">15회</span></li>
+						<li data-name="김민호" data-phone="8890"><img src="https://instagramimages-a.akamaihd.net/profiles/anonymousUser.jpg"><span><strong>김민호</strong><br>8890</span><span class="cnt">2회</span></li>
+						<li data-name="이아영" data-phone="2450"><img src="https://instagramimages-a.akamaihd.net/profiles/anonymousUser.jpg"><span><strong>이아영</strong><br>2450</span><span class="cnt">8회</span></li>
+					</ul>
+				</div>
+				<div class="save_wrap on" id="savingDrawForm">
+					<div style="margin-top:30px;">
+						<h1 class="saving_brand_name">할리스커피</h1>
+						<div class="saving_draw type1">
+							<div class="active coupon"><div><div><span>1</span></div></div></div>
+							<div class="active coupon"><div><div><span>2</span></div></div></div>
+							<div class="active coupon"><div><div><span>3</span></div></div></div>
+							<div class="active coupon"><div><div><span>4</span></div></div></div>
+							<div class="active coupon"><div><div><span>5</span></div></div></div>
+							<div class="active coupon"><div><div><span>6</span></div></div></div>
+							<div class="coupon"><div><div><span>7</span></div></div></div>
+							<div class="coupon"><div><div><span>8</span></div></div></div>
+							<div class="coupon"><div><div><span>9</span></div></div></div>
+							<div class="coupon"><div><div><span>10</span></div></div></div>
+						</div>
+					</div>
+					
+					<div style="margin-top:40px;margin-bottom:20px;text-align:center;">
+						<div style="padding-bottom:15px;"><span id="savingNm"></span>님에게 적립하시겠습니까?</div>
+						<button type="button" class="bs-btn green" onclick="savingBtn(this)">적립</button>
+						<button type="button" class="bs-btn" onclick="savingCancelBtn()">취소</button>
+					</div>
+				</div>
+			</div>
+			
+			<!-- 멤버 -->
+			<div class="content" style="max-width:500px;" id="member">
+				<button type="button" class="close" title="닫기">×</button>
+				<h1 class="title">멤버</h1>
+				<div style="padding:10px 58px 10px 0;position:relative;">
+					<input type="text" class="bs-form" placeholder="전화번호 뒷자리 또는 이름" style="margin-right:6px;width:100%;">
+					<button type="button" class="bs-btn blue" style="position:absolute;right:0;top:9px;"><i class="ion-ios-search-strong icon"></i></button>
+				</div>
+				<ul class="member_list" id="savingMemberList">
+					<li data-name="서영진" data-phone="2960"><img src="https://instagramimages-a.akamaihd.net/profiles/anonymousUser.jpg"><span><strong>서영진</strong><br>2960</span><span class="cnt">25회</span></li>
+					<li data-name="송민호" data-phone="4460"><img src="https://instagramimages-a.akamaihd.net/profiles/anonymousUser.jpg"><span><strong>송민호</strong><br>4460</span><span class="cnt">5회</span></li>
+					<li data-name="이은아" data-phone="4539"><img src="https://instagramimages-a.akamaihd.net/profiles/anonymousUser.jpg"><span><strong>이은아</strong><br>4539</span><span class="cnt">15회</span></li>
+					<li data-name="김민호" data-phone="8890"><img src="https://instagramimages-a.akamaihd.net/profiles/anonymousUser.jpg"><span><strong>김민호</strong><br>8890</span><span class="cnt">2회</span></li>
+					<li data-name="이아영" data-phone="2450"><img src="https://instagramimages-a.akamaihd.net/profiles/anonymousUser.jpg"><span><strong>이아영</strong><br>2450</span><span class="cnt">8회</span></li>
+				</ul>
+			</div>
+			
+			<!-- 이력 -->
+			<div class="content" style="max-width:600px;" id="history">
+				<button type="button" class="close" title="닫기">×</button>
+				<h1 class="title">이력</h1>
+			</div>
+			
+			<!-- 통계 -->
+			<div class="content" style="max-width:800px;" id="stats">
+				<button type="button" class="close" title="닫기">×</button>
+				<h1 class="title">통계</h1>
+			</div>
+			
+			<!-- 설정 -->
+			<div class="content" style="max-width:500px;" id="config">
+				<button type="button" class="close" title="닫기">×</button>
+				<h1 class="title">설정</h1>
+				<div class="tabbar">
+					<ul class="tabbar_inner">
+						<li class="active">계정</li>
+						<li>정보</li>
+						<li>설정</li>
+					</ul>
+					<div class="highlight"><span style="width:25px;"></span></div>
+				</div>
+				<div class="tab_container">
+					<div class="tab_wrap">
+						<div class="tab active">
+							<div class="form_block">
+								<span>이메일</span>
+								<input type="email" class="bs-form" placeholder="이메일" required="required">
+							</div>
+							<div class="form_block">
+								<span>비밀번호</span>
+								<input type="password" class="bs-form" placeholder="비밀번호" required="required">
+							</div>
+							<div style="margin-top:20px;text-align:center;">
+								<button type="submit" class="bs-btn green">확인</button>
+							</div>
+						</div>
+						<div class="tab">
+							<div class="brandlogo_config">
+								<img class="logo" src="https://igcdn-photos-d-a.akamaihd.net/hphotos-ak-xtp1/t51.2885-19/11018428_1561110444162331_977141427_a.jpg">
+								<div>
+									<span>수정</span>
+									<span>삭제</span>
+								</div>
+							</div>
+							<div class="form_block">
+								<span>상호명</span>
+								<input type="text" class="bs-form" placeholder="상호명" required="required">
+							</div>
+							<div class="form_block">
+								<span>주소</span>
+								<input type="text" class="bs-form" placeholder="주소" required="required">
+							</div>
+							<div style="margin-top:20px;text-align:center;">
+								<button type="submit" class="bs-btn green">확인</button>
+							</div>
+						</div>
+						<div class="tab">
+							slide 3
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- 적립금 템플릿 만들기 -->
+			<div class="content" style="max-width:800px;" id="savingCreate">
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide saving_create_slide">
+							<h1>어서오세요</h1>
+							<p><span>할리스커피</span>님 처음이시군요!<br>먼저 우리매장에서 사용할 적립방법을 정해볼까요?</p>
+							<button type="button" class="bs-btn blue" style="margin-top:5px;" onclick="mySwiper.slideNext()">다음</button>
+						</div>
+						<div class="swiper-slide saving_create_slide">
+							<h2>적립 방법을 선택해 주세요</h2>
+							<div class="saving_category">
+								<div class="saving_type">
+									<svg enable-background="new 0 0 48 48" height="48px" version="1.1" viewBox="0 0 48 48" width="48px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Expanded"><g><g><path d="M45,48H3c-0.552,0-1-0.448-1-1v-4c0-0.552,0.448-1,1-1s1,0.448,1,1v3h40v-3c0-0.552,0.448-1,1-1s1,0.448,1,1v4     C46,47.552,45.552,48,45,48z"/></g><g><path d="M47,44H1c-0.552,0-1-0.448-1-1v-6c0-2.757,2.243-5,5-5h9.692c6.583-4.582,3.562-11.23,1.127-16.585     C14.803,13.178,14,11.411,14,10c0-6.521,5.029-9.933,9.997-9.933C28.968,0.067,34,3.479,34,10c0,1.404-0.799,3.168-1.812,5.402     c-2.431,5.365-5.45,12.025,1.119,16.598H43c2.757,0,5,2.243,5,5v6C48,43.552,47.552,44,47,44z M2,42h44v-5c0-1.654-1.346-3-3-3     H33c-0.197,0-0.389-0.058-0.553-0.167c-8.306-5.518-4.559-13.786-2.08-19.257C31.207,12.723,32,10.973,32,10     c0-5.451-4.148-7.933-8.003-7.933C20.146,2.067,16,4.549,16,10c0,0.978,0.797,2.731,1.641,4.587     c2.483,5.462,6.235,13.716-2.087,19.246C15.389,33.942,15.197,34,15,34H5c-1.654,0-3,1.346-3,3V42z"/></g></g></g></svg>
+									<h3>스탬프 카드</h3>
+									<p>결제할때마다 스탬프카드에 스탬프찍는 방식</p>
+								</div>
+								<div class="saving_type">
+									<i class="ion-plus-round"></i>
+									<h3>포인트 카드</h3>
+									<p>결제할때마다 일정 포인트를 적립해주는 방식</p>
+								</div>
+							</div>
+							<button type="button" class="bs-btn" style="margin-top:35px;" onclick="mySwiper.slideNext()" id="savingCtActBtn" disabled="disabled">다음</button>
+						</div>
+						<div class="swiper-slide saving_create_slide">
+							<div style="width:100%;max-width:300px;display:inline-block;margin-right:45px;position:relative;z-index:9999;margin-top:25px;">
+								<h1 class="saving_brand_name">할리스커피</h1>
+								<div class="saving_draw type1" id="savingCtType1Draw"></div>
+								<div class="gift on" id="gift" data-index="0"><div><input type="text" placeholder="사은품" onkeydown="if(event.keyCode == 13){ giftAdd() }"><button type="button" onclick="giftAdd()"><i class="ion-plus-round"></i></button></div></div>
+							</div>
+							<div style="width:100%;max-width:300px;display:inline-block;text-align:left;vertical-align:top;">
+								<div class="form_block svc">
+									<div class="form_inline" style="margin-right:30px;">
+										<span>사이즈</span>
+										<input type="number" class="bs-form" placeholder="사이즈" required="required" value="10" maxlength="100" onchange="reDrawSavingType1(this)" style="width:70px;">
+									</div>
+									<div class="form_inline">
+										<span>유효기간&nbsp;<span class="gift-help" data-message="발행일로부터의 유효기간입니다."><i class="ion-help-circled"></i></span></span>
+										<!-- <label class="bs-radio" style="margin-right:8px;"><input type="radio" name="expDate" checked="checked"><span>발행일로부터</span></label> -->
+										<input type="text" class="bs-form" style="width:50px;" placeholder="MM">&nbsp;개월
+									</div>
+								</div>
+								<div class="form_block svc">
+									<span>설명</span>
+									<input type="text" class="bs-form" placeholder="예) 모든음료 주문시 1회 적립">
+								</div>
+								<div class="form_block svc">
+									<span>사은품&nbsp;<span class="gift-help" data-message="원하는 번호를 클릭해 사은품을 추가해주세요"><i class="ion-help-circled"></i></span></span>
+									<ul class="gift_list" id="giftList"></ul>
+								</div>
+							</div>
+							<div style="margin-top:35px;">
+								<button type="button" class="bs-btn" onclick="mySwiper.slidePrev()">이전</button>
+								<button type="button" class="bs-btn blue" onclick="mySwiper.slideNext()">다음</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="page">
+	<div class="content_wrap">
+		<div class="content_inner">
+			<div class="menu_wrap" id="menuLayout">
+				<ul class="menu_list">
+					<li><a href="#/saving"><i class="ion-card icon"></i><span>적립</span></a></li>
+					<li><a href="#/member"><i class="ion-person-stalker icon"></i><span>멤버</span></a></li>
+					<li><a href="#/history"><i class="ion-clipboard icon"></i><span>이력</span></a></li>
+					<li><a href="#/stats"><i class="ion-stats-bars icon"></i><span>통계</span></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/swiper.jquery.min.js"></script>
+<script src="js/util.js"></script>
+<script type="text/javascript">
+	
+	var mySwiper;
+	
+	$(function(){
+		mySwiper = new Swiper ('.swiper-container', {
+			slidesPerView: 1,
+			spaceBetween: 25,
+			keyboardControl: false,
+			simulateTouch: false,
+			autoHeight: true
+		});
+		$(".tabbar_inner > li").click(function(){
+			$(".tabbar_inner").children("li").removeClass("active");
+			$(this).addClass("active").parent().next().children("span").css({"width":$(this).width(),"transform":"translateX("+$(this).position().left+"px)"});
+			var tab = $(this).parent().parent().next().find(".tab");
+			tab.removeClass("active");
+			tab.eq($(this).index()).addClass("active");
+		});
+		
+		$("#savingMemberList").children("li").click(function(){
+			$("#savingNm").html($(this).data("name")+"("+$(this).data("phone")+")");
+			$("#savingDrawForm").removeClass("on");
+			$("#savingSearchForm").hide();
+		});
+		
+		$(".saving_type").click(function(){
+			$(".saving_type").removeClass("active");
+			$(this).addClass("active");
+			$("#savingCtActBtn").addClass("blue").removeAttr("disabled");
+		});
+		
+	});
+	
+	for(var i=1;i<=10;i++){
+		$("#savingCtType1Draw").append("<div class='coupon'><div><div><span>"+i+"</span></div></div></div>");
+	}
+	
+	/** 적립 버튼 **/
+	function savingBtn(el){
+		$(el).parent().prev().children(".saving_draw").children("div").each(function(){
+			if(!$(this).hasClass("active")){
+				$(this).addClass("active");
+				return false;
+			}
+		});
+	}
+	
+	/** 적립 취소 버튼 **/
+	function savingCancelBtn(){
+		$("#savingDrawForm").addClass("on");
+		$("#savingSearchForm").show();
+	}
+	
+	
+	function openLayout(id){
+		/* if(history.pushState){
+			if(state){
+				document.title = $(state).children("span").html();
+				history.pushState(id, document.title, "#/"+id);
+			}
+		} */
+		$("#menuLayout").addClass("hide");
+		$("#"+id).show();
+		setTimeout(function(){
+			$("#"+id).addClass("show");
+		},50);
+	}
+	
+	$(document).on("click", ".close", function(){
+		$(this).parent().removeClass("show").hide();
+		$("#menuLayout").removeClass("hide");
+	});
+	
+	$(document).on("click", "#savingCtType1Draw > .coupon", function(){
+		//$(".backdrop").remove();
+		//$("#savingCtType1Draw").children(".gift").remove();
+		//$("#savingCtType1Draw").append("<div class='gift' style='top:"+($(this).position().top-10)+"px;left:"+($(this).position().left+30)+"px;'><div><input type='text' placeholder='사은품'><button type='button' onclick='giftAdd(this, "+$("#savingCtType1Draw > .coupon").index($(this))+")'><i class='ion-plus-round'></i></button></div></div>");
+		var $gift = $("#gift");
+		if($(this).hasClass("point")){
+			var index = parseInt($("#savingCtType1Draw > .coupon").index($(this)))+1;
+			var text = $("#giftList").children("li[data-index="+index+"]").children("span").html();
+			$gift.find("input").val(text);
+		}else{
+			$gift.find("input").val("");
+		}
+		$gift.data("index", $("#savingCtType1Draw > .coupon").index($(this))).removeClass("on").css({"top":($(this).position().top-6),"left":($(this).position().left+40)}).find("input").focus();
+	});
+	
+	$(document).on("click", ".backdrop", function(e){
+		$(this).remove();
+		$("#gift").addClass("on");
+	});
+	
+	function giftAdd(){
+		if($("#gift").find("input").val() == "") return false;
+		var index = parseInt($("#gift").data("index"))+1;
+		if($("#giftList").children("li[data-index="+index+"]").length == 1){
+			$("#giftList").children("li[data-index="+index+"]").children("span").html($("#gift").find("input").val());
+		}else{
+			$("#giftList").append("<li data-index='"+index+"'><strong>"+index+"</strong><span>"+$("#gift").find("input").val()+"</span><i class='ion-close-round delete-btn' title='삭제' onclick='giftDelete(this, "+index+")'></i></li>");
+			$("#savingCtType1Draw > .coupon").eq(index-1).addClass("point");
+		}
+		
+		$("#gift").addClass("on");
+		$("#gift").find("input").val("");
+		mySwiper.onResize();
+	}
+	
+	function giftDelete(el, index){
+		$(el).parent().remove();
+		$("#savingCtType1Draw > .coupon").eq(index-1).removeClass("point");
+	}
+	
+	//openLayout("savingCreate");
+	
+	function reDrawSavingType1(el){
+		var size = $("#savingCtType1Draw").children(".coupon").size();
+		if(size < el.value){
+			for(size;size<el.value;size++){
+				$("#savingCtType1Draw").append("<div class='coupon'><div><div><span>"+(size+1)+"</span></div></div></div>");
+			}
+		}else{
+			for(size;size>el.value;size--){
+				if($("#savingCtType1Draw").children(".coupon").hasClass("point")) $("#giftList").children("li[data-index="+size+"]").remove();
+				$("#savingCtType1Draw").children(".coupon").eq(size-1).remove();
+			}
+		}
+		mySwiper.onResize();
+		
+		/* $("#savingCtType1Draw").empty();
+		for(var i=1;i<=el.value;i++){
+			$("#savingCtType1Draw").append("<div class='coupon'><div><div><span>"+i+"</span></div></div></div>");
+		}
+		mySwiper.onResize(); */
+	}
+	
+	$(window).bind("popstate", function(event) {
+		openLayout(location.hash.substring(2,location.hash.length));
+		
+		/* if(location.hash.indexOf("#") == 0){
+			openLayout(location.hash.substring(2,location.hash.length), true);
+			return false;
+		}
+		var data = event.originalEvent.state;
+		console.log(data);
+		if(data){
+			openLayout(data, false);
+		}else{
+			$(".content").removeClass("show").hide();
+			$("#menuLayout").removeClass("hide");
+			document.title = "메인";
+		} */
+	});
+	
+	$("body").on("click", function(e){
+		if($("#gift").has(e.target).length === 0){
+			$("#gift").addClass("on");
+		}
+	});
+
+</script>
+</body>
+</html>
