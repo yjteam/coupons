@@ -1,0 +1,11 @@
+{
+  "name": "siloam-stock",
+  "description": "siloam stock management system",
+  "scripts": {
+  },
+  "env": {
+  },
+  "addons": [
+
+  ]
+}
