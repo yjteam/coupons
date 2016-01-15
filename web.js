@@ -21,6 +21,5 @@ var server = app.listen(port, function() {
 
 /* 웹소켓 */
 var io = socketio.listen(server);
-io.set('log level',1);
 io.on('connection',function(socket) {
 });
