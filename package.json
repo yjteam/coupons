@@ -1,9 +1,9 @@
 {
-  "name": "siloam-stock",
+  "name": "coupons",
   "private": true,
   "version": "0.0.0",
-  "description": "siloam stock management system",
-  "repository": "https://github.com/yhzion/siloam-stock",
+  "description": "online coupons",
+  "repository": "https://github.com/yjteam/coupons",
   "license": "MIT",
   "dependencies": {
     "bower": "^1.6.5",

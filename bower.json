@@ -1,8 +1,8 @@
 {
-  "name": "siloam-stock",
-  "description": "siloma stock management system",
+  "name": "coupons",
+  "description": "online coupons",
   "version": "0.0.0",
-  "homepage": "https://github.com/angular/angular-seed",
+  "homepage": "https://github.com/yjteam/coupons",
   "license": "MIT",
   "private": true,
   "dependencies": {

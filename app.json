@@ -1,6 +1,6 @@
 {
-  "name": "siloam-stock",
-  "description": "siloam stock management system",
+  "name": "coupons",
+  "description": "online coupons",
   "scripts": {
   },
   "env": {

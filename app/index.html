@@ -1,57 +1,57 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="ko" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="ko" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="ko" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if lt IE 7]>
+<html lang="ko" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html lang="ko" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html lang="ko" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html lang="ko" data-ng-app="myApp" class="no-js">
 <!--<![endif]-->
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title data-app-title></title>
-<meta name="description" content="마법같은 성가대 출석관리">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title data-app-title></title>
+    <meta name="description" content="마법같은 성가대 출석관리">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-<!-- CSS -->
-<link rel="stylesheet" href="app.css">
-<link rel="stylesheet" href="notify.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.rawgit.com/theeluwin/NotoSansKR-Hestia/master/stylesheets/NotoSansKR-Hestia.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,600,800">
+    <link rel="stylesheet" href="css/global-style.css">
+    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="notify.css">
 
-<!-- bower component CSS -->
-<link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
-<link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
-<link rel="stylesheet" href="bower_components/ionicons/css/ionicons.min.css">
-<link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+    <!-- bower component CSS -->
+    <link rel="stylesheet" href="bower_components/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.min.css">
 
-<!-- Javascript -->
-<script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
-<script type="text/javascript" src="bower_components/moment/locale/ko.js"></script>
+    <!-- Javascript -->
+    <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+    <script type="text/javascript" src="bower_components/moment/locale/ko.js"></script>
 
-<!-- jquery -->
-<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
-<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
-<script type="text/javascript" src="bower_components/bootbox/bootbox.js"></script>
+    <!-- jquery -->
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
 
 </head>
 
 <body>
-	<!--[if lt IE 7]>
-		<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-	<![endif]-->
-	<div data-ng-view></div>
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+<div data-ng-view></div>
 
-	<div>under construction</div>
-	
-	<script src="notify.js"></script>
-	<script src="bower_components/angular/angular.min.js"></script>
-	<script src="bower_components/angular-route/angular-route.min.js"></script>
-	<script src="bower_components/angular-resource/angular-resource.min.js"></script>
-	<script src="bower_components/angular-animate/angular-animate.min.js"></script>
-	<script src="app.js"></script>
-	
-	<!-- Web Socket -->
-	<script src='/socket.io/socket.io.js'></script>
+<script src="notify.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-route/angular-route.min.js"></script>
+<script src="bower_components/angular-resource/angular-resource.min.js"></script>
+<script src="bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="app.js"></script>
+
+<script src="view/login/login.js"></script>
+
+<!-- Web Socket -->
+<script src='/socket.io/socket.io.js'></script>
 </body>
 </html>

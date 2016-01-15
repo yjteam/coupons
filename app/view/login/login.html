@@ -1,0 +1,22 @@
+<div class="login_wrap" ng-init="scale='container on'">
+    <div class="login_inner">
+        <form action="main.html" method="get">
+            <div ng-class="scale" id="loginForm">
+                <i class="ion-ios-cloud-outline" style="font-size:125px;color:#5E7782;display:inline-flex;"></i>
+                <h1>로그인</h1>
+                <input type="email" id="email" name="email" placeholder="이메일" required="required" maxlength="60">
+                <input type="password" id="password" name="password" placeholder="비밀번호" required="required"  maxlength="60">
+                <span class="remember_me"><label><input type="checkbox" name="remember"><span class="checkbox"></span>아이디 저장</label></span>
+                <button type="submit" class="login_btn" id="loginBtn"><i class="ion-log-in"></i></button>
+            </div>
+            <div class="sign_message on">아직 회원이 아니세요?&nbsp;<a href="sign.html">회원가입</a></div>
+        </form>
+        <div class="footer">
+            <a href="/privacy">개인정보취급방침</a>
+            <span class="footer_line">|</span>
+            <a href="/terms">약관</a>
+            <span class="footer_line">|</span>
+            <a href="/">© InstaCollection</a>
+        </div>
+    </div>
+</div>
